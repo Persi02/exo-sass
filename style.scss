@@ -1,0 +1,102 @@
+:root {
+  --white: #FFF;
+  --black: #000;
+}
+
+@mixin theme-colors($light: true) {
+  @if $light {
+    background-color: var(--white);
+    color: var(--black);
+  }
+
+  @else {
+    background-color: var(--black);
+    color: var(--white);
+  }
+}
+
+@for $i from 1 through 5 {
+  .color#{$i} {
+    font-size: 10px * $i;
+  }
+}
+
+@function add-10px($pixel) {
+  $var: 10px;
+  $pixel: $pixel+$var;
+  @return $pixel;
+}
+
+@mixin grid($col) {
+  display: grid;
+  grid-template-columns: repeat($col , 1fr);
+  gap: add-10px(0);
+}
+
+@mixin sm {
+  @media (min-width:640px) {
+    @content;
+  }
+}
+
+@mixin md {
+  @media (min-width:768px) {
+    @content;
+  }
+}
+
+@mixin lg {
+  @media (min-width:1024px) {
+    @content;
+  }
+}
+
+@mixin xl {
+  @media (min-width:1280px) {
+    @content;
+  }
+}
+
+body {
+  @include theme-colors($light: true);
+  @include grid(1);
+
+  div {
+    padding: add-10px(0);
+  }
+}
+
+@include sm {
+  body {
+    @include grid(1);
+
+    div {
+      padding: add-10px(10);
+    }
+  }
+}
+
+@include md {
+  body {
+    @include grid(2);
+  }
+}
+
+@include lg {
+  body {
+    @include theme-colors($light: false);
+    @include grid(4);
+
+
+  }
+}
+
+@include xl {
+  body {
+    @include grid(6);
+
+    div {
+      padding: add-10px(20);
+    }
+  }
+}
