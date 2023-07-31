@@ -23,7 +23,7 @@
   gap: add-10px(0);
 }
 
-@mixin bg($taille) {
+@mixin bp($taille) {
 
   @if $taille==sm {
     @media (min-width:640px) {
@@ -62,7 +62,7 @@ body {
   }
 }
 
-@include bg(sm) {
+@include bp(sm) {
   body {
     @include grid(1);
 
@@ -72,19 +72,19 @@ body {
   }
 }
 
-@include bg(md) {
+@include bp(md) {
   body {
     @include grid(2);
   }
 }
 
-@include bg(lg) {
+@include bp(lg) {
   body {
     @include grid(4);
   }
 }
 
-@include bg(xl) {
+@include bp(xl) {
   body {
     @include grid(6);
 
